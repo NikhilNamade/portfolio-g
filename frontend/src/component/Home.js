@@ -70,7 +70,7 @@ const Home = (props) => {
       formData.append("Domain", domain);
       formData.append("image", image);
       formData.append("resume", resume);
-      const response = await fetch(`http://localhost:5000/api/data/adddata`, {
+      const response = await fetch(`https://portfolio-generator-backend-kvqx.onrender.com/api/data/adddata`, {
         method: 'POST',
         headers: {
           "auth-token": localStorage.getItem("token"),

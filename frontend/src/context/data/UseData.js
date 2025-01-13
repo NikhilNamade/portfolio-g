@@ -8,7 +8,7 @@ const UseData = (props) => { // Accept props here
   const [showNavbar, setShowNavbar] = useState(true);
   const fetchId = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/data/fetchid`, {
+      const response = await fetch(`https://portfolio-generator-backend-kvqx.onrender.com/api/data/fetchid`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,7 +25,7 @@ const UseData = (props) => { // Accept props here
 
 const fetchdata  = async (userId) =>{
   try {
-    const response = await fetch(`http://localhost:5000/api/data/fetch/${userId}`,{
+    const response = await fetch(`https://portfolio-generator-backend-kvqx.onrender.com/api/data/fetch/${userId}`,{
       method: "POST",
     })
     const data = await  response.json()
