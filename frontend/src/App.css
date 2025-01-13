@@ -75,27 +75,6 @@ select:focus {
   border: 1px solid #F76C5E;
 }
 
-/* Responsive Design */
-@media (max-width: 60vmax) {
-  form {
-    padding: 3vmin;
-  }
-
-  form h1 {
-    font-size: 4.5vmin;
-  }
-
-  input,
-  textarea,
-  select,
-  button {
-    font-size: 2vmin;
-  }
-
-  button {
-    padding: 1.5vmin;
-  }
-}
 
 .bxos {
   height: auto;
@@ -538,17 +517,213 @@ footer {
   color: #333;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .project-card {
+/* Responsive Form Section */
+@media (max-width: 1500px) {
+  nav{
     width: 100%;
+  }
+  form {
+    width: 90%;
+    padding: 3vmin;
+    margin: auto;
+  }
+  #projectInput{
+    display: flex;
+    flex-direction: column;
+  }
+  form h1 {
+    font-size: 4vmin;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 2vmin;
+  }
+
+  .formbox {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .submitbtn {
+    font-size: 2vmin;
+    padding: 1.2vmin;
+  }
+}
+
+
+/* Responsive Form Section */
+@media (max-width: 768px) {
+  form {
+    width: 90%;
+    padding: 3vmin;
+    margin: auto;
+  }
+
+  form h1 {
+    font-size: 4vmin;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 2vmin;
+  }
+
+  .formbox {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .submitbtn {
+    font-size: 2vmin;
+    padding: 1.2vmin;
+  }
+}
+
+/* Responsive bxos Section */
+@media (max-width: 768px) {
+  .bxos {
+    flex-direction: column;
+    padding: 3vmin;
+  }
+
+  .box {
+    width: 90%;
+    margin-bottom: 2vmin;
+    height: auto;
+  }
+
+  .box h1 {
+    font-size: 3vmin;
+  }
+}
+
+/* Portfolio 1 - Responsive */
+@media (max-width: 768px) {
+  header img {
+    width: 100px;
+  }
+
+  nav a {
+    font-size: 2.5vmin;
+    margin: 0 5px;
+  }
+
+  section {
+    padding: 2vmin;
+    margin: 10px auto;
+  }
+
+  h1, h2 {
+    font-size: 4vmin;
+  }
+}
+
+/* Portfolio 2 - Responsive */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 3vmin;
+  }
+
+  .nav-links li {
+    margin: 0 10px;
+  }
+
+  #about {
+    flex-direction: column;
+    padding: 20px 0;
+  }
+
+  .profile-pic {
+    width: 120px;
+    margin-bottom: 10px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* Portfolio 3 - Responsive */
+@media (max-width: 768px) {
+  .split-layout {
+    flex-direction: column;
   }
 
   .left-section {
+    width: 100%;
     padding: 20px;
   }
 
   .right-section {
-    padding: 30px;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects {
+    flex-direction: column;
+  }
+
+  .project-card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .contact-form {
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+/* Small Screens (Max Width: 480px) */
+@media (max-width: 480px) {
+  form h1,
+  h1, h2 {
+    font-size: 3.5vmin;
+  }
+
+  nav a {
+    font-size: 2vmin;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 1.8vmin;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .submitbtn {
+    padding: 1vmin;
+    font-size: 1.8vmin;
+  }
+
+  .bxos {
+    padding: 2vmin;
+  }
+
+  .box {
+    width: 100%;
+  }
+
+  .left-section {
+    padding: 10px;
+  }
+
+  .right-section {
+    padding: 10px;
   }
 }
