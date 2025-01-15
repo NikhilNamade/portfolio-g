@@ -12,7 +12,7 @@ const Portfolio1 = () => {
     <div>
       <header>
         <img src={userdata.image ? userdata.image : demo} alt="Profile Photo" />
-        <h1>{userdata.name ? userdata.name : "Your Name"}</h1>
+        <h1 style={{color:"white"}}>{userdata.name ? userdata.name : "Your Name"}</h1>
         <p>{userdata.Domain ? userdata.Domain +" | " + userdata.university + " | " + userdata.education + " |  Experience of " + userdata.experience + (userdata.experience > 1 ? "Years":"Year")   : "Frontend Developer | Problem Solver"}</p>
       </header>
       <nav>

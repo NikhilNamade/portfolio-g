@@ -4,7 +4,7 @@ const Home = (props) => {
   const navigate = useNavigate();
   const [submit, setSubmit] = useState(false);
   const [image, setImg] = useState("");
-   const [resume, setResume] = useState("");
+  const [resume, setResume] = useState("");
   const [domain, setDomain] = useState("");
   const [education, setEducation] = useState("");
   const [Skills, setSkills] = useState([""]);
@@ -47,7 +47,7 @@ const Home = (props) => {
   // submitting data
   const handleSubmit = async (e) => {
     e.preventDefault();
-    {props.setProgress(10)}
+    { props.setProgress(10) }
     // Additional validation can be done here if necessary
     if (credincials.name.length < 5) {
       alert("Name must be at least 5 characters long.");
@@ -79,7 +79,7 @@ const Home = (props) => {
       });
       setSubmit(true);
       navigate("/about")
-      {props.setProgress(100)}
+      { props.setProgress(100) }
     } catch (error) {
       console.error('Error submitting form:', error);
     }
@@ -102,326 +102,302 @@ const Home = (props) => {
 
 
   return (
-    <div className="container mt-5">
+    <div className="container formContainer">
       <p className="fs-1 fw-bolder mt-5">User Details</p>
       <form onSubmit={handleSubmit}>
-        <table width="100%">
-          <tbody>
-            <tr>
-              <td>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    disabled={!localStorage.getItem("token")}
-                    className="form-control"
-                    id="name"
-                    name="name"
-                    value={credincials.name}
-                    onChange={onchange}
-                    style={{ width: "60vmin" }}
-                    placeholder="User Name"
-                  />
-                </div>
-              </td>
-              <td>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    Email address
-                  </label>
-                  <input
-                    type="text"
-                    disabled={!localStorage.getItem("token")}
-                    className="form-control"
-                    id="email"
-                    name="email"
-                    onChange={onchange}
-                    value={credincials.email}
-                    style={{ width: "60vmin" }}
-                    aria-describedby="emailHelp"
-                    placeholder="User Email Address"
-                  />
-                </div>
-              </td>
-            </tr>
+          <div className="formbox">
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">
+                Name
+              </label>
+              <input
+                type="text"
+                disabled={!localStorage.getItem("token")}
+                className="form-control"
+                id="name"
+                name="name"
+                value={credincials.name}
+                onChange={onchange}
+                style={{ width: "60vmin" }}
+                placeholder="User Name"
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">
+                Email address
+              </label>
+              <input
+                type="text"
+                disabled={!localStorage.getItem("token")}
+                className="form-control"
+                id="email"
+                name="email"
+                onChange={onchange}
+                value={credincials.email}
+                style={{ width: "60vmin" }}
+                aria-describedby="emailHelp"
+                placeholder="User Email Address"
+              />
+            </div>
+          </div>
 
-            <tr>
-              <td>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    Eduaction
-                  </label>
-                  <br />
-                  <select
-                    value={education}
-                    onChange={handledropedu}
-                    style={{
-                      width: "60vmin",
-                      padding: ".375rem .75rem",
-                      borderRadius: "1vmin",
-                      border: "1px solid #dee2e6",
-                    }}
-                    disabled={!localStorage.getItem("token")}
-                  >
-                    <option value="">Education</option>
-                    <option value="B.E.">B.E.</option>
-                    <option value="B.TECH.">B.TECH.</option>
-                    <option value="M.E.">M.E.</option>
-                    <option value="M.TECH">M.TECH</option>
-                  </select>
-                </div>
-              </td>
-              <td>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    University
-                  </label>
+          <div className="formbox">
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label" style={{marginBottom:"-3vmin"}}  >
+                Eduaction
+              </label>
+              <br />
+              <select
+                value={education}
+                onChange={handledropedu}
+                style={{
+                  width: "60vmin",
+                  padding: ".375rem .75rem",
+                  borderRadius: "1vmin",
+                  border: "1px solid #dee2e6",
+                }}
+                disabled={!localStorage.getItem("token")}
+              >
+                <option value="">Education</option>
+                <option value="B.E.">B.E.</option>
+                <option value="B.TECH.">B.TECH.</option>
+                <option value="M.E.">M.E.</option>
+                <option value="M.TECH">M.TECH</option>
+              </select>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">
+                University
+              </label>
+              <input
+                type="text"
+                disabled={!localStorage.getItem("token")}
+                className="form-control"
+                id="university"
+                name="university"
+                value={credincials.university}
+                onChange={onchange}
+                style={{ width: "60vmin" }}
+                placeholder="Mumbai University"
+              />
+            </div>
+          </div>
+
+          <div className="formbox">
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label" style={{marginBottom:"-3vmin"}}>
+                Domain
+              </label>
+              <br />
+              <select
+                value={domain}
+                onChange={handledropdomain}
+                style={{
+                  width: "60vmin",
+                  padding: ".375rem .75rem",
+                  borderRadius: "1vmin",
+                  border: "1px solid #dee2e6",
+                }}
+                disabled={!localStorage.getItem("token")}
+              >
+                <option value="">Domain</option>
+                <option value="Full Satck Developer">
+                  Full Stack Developer
+                </option>
+                <option value="AI/ML">AI/ML</option>
+                <option value="Frontend Developer">
+                  Frontend Developer
+                </option>
+                <option value="Backend Developer">Backend Developer</option>
+              </select>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">
+                Experience
+              </label>
+              <br />
+              <input
+                type="text"
+                disabled={!localStorage.getItem("token")}
+                className="form-control"
+                id="experience"
+                name="experience"
+                value={credincials.experience}
+                onChange={onchange}
+                style={{ width: "60vmin" }}
+                placeholder="Years Of Experinece"
+              />
+            </div>
+          </div>
+
+          <div className="formbox">
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">
+                Skills{" "}
+                <i
+                  className="fa-solid fa-plus mx-2"
+                  style={{ cursor: "pointer" }}
+                  onClick={handleSkills}
+                ></i>
+              </label>
+              <div
+                id="skillsInput"
+                className="d-flex align-item-center justify-content-start flex-wrap"
+                style={{ width: "100%" }}
+              >
+                {Skills.map((skill, index) => (
                   <input
+                    key={index}
                     type="text"
+                    className="form-control  mx-2 "
+                    name="skills"
+                    value={skill}
+                    onChange={(e) => onchangeSkils(index, e)}
+                    placeholder="html experince"
+                    style={{ width: "60vmin", marginBottom: "10px" }}
                     disabled={!localStorage.getItem("token")}
-                    className="form-control"
-                    id="university"
-                    name="university"
-                    value={credincials.university}
-                    onChange={onchange}
-                    style={{ width: "60vmin" }}
-                    placeholder="Mumbai University"
                   />
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    Domain
-                  </label>
-                  <br />
-                  <select
-                    value={domain}
-                    onChange={handledropdomain}
-                    style={{
-                      width: "60vmin",
-                      padding: ".375rem .75rem",
-                      borderRadius: "1vmin",
-                      border: "1px solid #dee2e6",
-                    }}
-                    disabled={!localStorage.getItem("token")}
-                  >
-                    <option value="">Domain</option>
-                    <option value="Full Satck Developer">
-                      Full Stack Developer
-                    </option>
-                    <option value="AI/ML">AI/ML</option>
-                    <option value="Frontend Developer">
-                      Frontend Developer
-                    </option>
-                    <option value="Backend Developer">Backend Developer</option>
-                  </select>
-                </div>
-              </td>
-              <td>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    Experience
-                  </label>
-                  <br />
-                  <input
-                    type="text"
-                    disabled={!localStorage.getItem("token")}
-                    className="form-control"
-                    id="experience"
-                    name="experience"
-                    value={credincials.experience}
-                    onChange={onchange}
-                    style={{ width: "60vmin" }}
-                    placeholder="Years Of Experinece"
-                  />
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td colSpan={2}>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    Skills{" "}
-                    <i
-                      className="fa-solid fa-plus mx-2"
-                      style={{ cursor: "pointer" }}
-                      onClick={handleSkills}
-                    ></i>
-                  </label>
-                  <div
-                    id="skillsInput"
-                    className="d-flex align-item-center justify-content-start flex-wrap"
-                    style={{ width: "100%" }}
-                  >
-                    {Skills.map((skill, index) => (
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="formbox">
+            <div className="mb-3 row">
+              <label htmlFor="exampleInputEmail1" className="form-label">
+                Projects{" "}
+                <i
+                  className="fa-solid fa-plus mx-2"
+                  style={{ cursor: "pointer" }}
+                  onClick={handleProject}
+                ></i>
+              </label>
+              <div
+                id="projectInput"
+                className="d-flex align-item-center justify-content-start flex-wrap col-md-3"
+                style={{ width: "130vmin" }}
+              >
+                {project.map((project, index) => (
+                  <>
+                    <React.Fragment >
                       <input
-                        key={index}
+                        key={`${index}-title`}
                         type="text"
-                        className="form-control  mx-2 "
-                        name="skills"
-                        value={skill}
-                        onChange={(e) => onchangeSkils(index, e)}
-                        placeholder="html experince"
-                        style={{ width: "60vmin", marginBottom: "10px" }}
+                        className="form-control "
+                        name="title"
+                        value={project.title}
+                        onChange={(e) => onchangeproject(index, e)}
+                        placeholder="Project Title"
+                        style={{ width: "40vmin", marginBottom: "10px" }}
                         disabled={!localStorage.getItem("token")}
                       />
-                    ))}
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td colSpan={2}>
-                <div className="mb-3 row">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    Projects{" "}
-                    <i
-                      className="fa-solid fa-plus mx-2"
-                      style={{ cursor: "pointer" }}
-                      onClick={handleProject}
-                    ></i>
-                  </label>
-                  <div
-                    id="skillsInput"
-                    className="d-flex align-item-center justify-content-start flex-wrap col-md-3"
-                    style={{ width: "130vmin" }}
-                  >
-                    {project.map((project, index) => (
-                      <>
-                        <React.Fragment >
-                          <input
-                            key={`${index}-title`}
-                            type="text"
-                            className="form-control "
-                            name="title"
-                            value={project.title}
-                            onChange={(e) => onchangeproject(index, e)}
-                            placeholder="Project Title"
-                            style={{ width: "40vmin", marginBottom: "10px" }}
-                            disabled={!localStorage.getItem("token")}
-                          />
-                          <input
-                            key={`${index}-description`}
-                            type="text"
-                            className="form-control "
-                            name="description"
-                            value={project.description}
-                            onChange={(e) => onchangeproject(index, e)}
-                            placeholder="Project description"
-                            style={{ width: "40vmin", marginBottom: "10px", marginLeft: "10px" }}
-                            disabled={!localStorage.getItem("token")}
-                          />
-                          <input
-                            key={`${index}-Projectlink`}
-                            type="text"
-                            className="form-control "
-                            name="Projectlink"
-                            value={project.Projectlink}
-                            onChange={(e) => onchangeproject(index, e)}
-                            placeholder="Project link"
-                            style={{ width: "40vmin", marginBottom: "10px", marginLeft: "10px" }}
-                            disabled={!localStorage.getItem("token")}
-                          />
-                        </React.Fragment>
-                      </>
-                    ))}
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    LinkedinURL
-                  </label>
-                  <input
-                    type="text"
-                    disabled={!localStorage.getItem("token")}
-                    className="form-control"
-                    id="LinkedinURL"
-                    name="LinkedinURL"
-                    value={credincials.LinkedinURL}
-                    onChange={onchange}
-                    style={{ width: "60vmin" }}
-                    placeholder="User LinkedinURL"
-                  />
-                </div>
-              </td>
-              <td>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    GithubURL
-                  </label>
-                  <input
-                    type="text"
-                    disabled={!localStorage.getItem("token")}
-                    className="form-control"
-                    id="GithubURL"
-                    name="GithubURL"
-                    value={credincials.GithubURL}
-                    onChange={onchange}
-                    style={{ width: "60vmin" }}
-                    placeholder="User GithubURL"
-                  />
-                </div>
-              </td>
-            </tr>
+                      <input
+                        key={`${index}-description`}
+                        type="text"
+                        className="form-control "
+                        name="description"
+                        value={project.description}
+                        onChange={(e) => onchangeproject(index, e)}
+                        placeholder="Project description"
+                        style={{ width: "40vmin", marginBottom: "10px", marginLeft: "10px" }}
+                        disabled={!localStorage.getItem("token")}
+                      />
+                      <input
+                        key={`${index}-Projectlink`}
+                        type="text"
+                        className="form-control "
+                        name="Projectlink"
+                        value={project.Projectlink}
+                        onChange={(e) => onchangeproject(index, e)}
+                        placeholder="Project link"
+                        style={{ width: "40vmin", marginBottom: "10px", marginLeft: "10px" }}
+                        disabled={!localStorage.getItem("token")}
+                      />
+                    </React.Fragment>
+                  </>
+                ))}
+              </div>
+            </div>
+          </div>
 
-            <tr>
-              <td>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    Profile Image
-                  </label>
-                  <input
-                    accept="image/*"
-                    type="file"
-                    disabled={!localStorage.getItem("token")}
-                    className="form-control"
-                    id="img"
-                    name="img"
-                    onChange={onchangeImg}
-                    style={{ width: "60vmin" }}
-                    placeholder="User Profile Image"
-                  />
-                  <p
-                    className="fs-6 fw-light"
-                    style={{ letterSpacing: "0.2vmin" }}
-                  >
-                  </p>
-                </div>
-              </td>
-              <td>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    Resume
-                  </label>
-                  <input
-                    type="file"
-                    disabled={!localStorage.getItem("token")}
-                    className="form-control"
-                    id="resume"
-                    name="resume"
-                    onChange={onchangeResume}
-                    style={{ width: "60vmin" }}
-                    placeholder="User Resume"
-                  />
-                  <p
-                    className="fs-6 fw-light"
-                    style={{ letterSpacing: "0.2vmin" }}
-                  >
-                  </p>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <div className="formbox">
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">
+                LinkedinURL
+              </label>
+              <input
+                type="text"
+                disabled={!localStorage.getItem("token")}
+                className="form-control"
+                id="LinkedinURL"
+                name="LinkedinURL"
+                value={credincials.LinkedinURL}
+                onChange={onchange}
+                style={{ width: "60vmin" }}
+                placeholder="User LinkedinURL"
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">
+                GithubURL
+              </label>
+              <input
+                type="text"
+                disabled={!localStorage.getItem("token")}
+                className="form-control"
+                id="GithubURL"
+                name="GithubURL"
+                value={credincials.GithubURL}
+                onChange={onchange}
+                style={{ width: "60vmin" }}
+                placeholder="User GithubURL"
+              />
+            </div>
+          </div>
+
+          <div className="formbox">
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">
+                Profile Image
+              </label>
+              <input
+                accept="image/*"
+                type="file"
+                disabled={!localStorage.getItem("token")}
+                className="form-control"
+                id="img"
+                name="img"
+                onChange={onchangeImg}
+                style={{ width: "60vmin" }}
+                placeholder="User Profile Image"
+              />
+              <p
+                className="fs-6 fw-light"
+                style={{ letterSpacing: "0.2vmin" }}
+              >
+              </p>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">
+                Resume
+              </label>
+              <input
+                type="file"
+                disabled={!localStorage.getItem("token")}
+                className="form-control"
+                id="resume"
+                name="resume"
+                onChange={onchangeResume}
+                style={{ width: "60vmin" }}
+                placeholder="User Resume"
+              />
+              <p
+                className="fs-6 fw-light"
+                style={{ letterSpacing: "0.2vmin" }}
+              >
+              </p>
+            </div>
+          </div>
         <button type="submit" className="btn btn-primary submitbtn">
           Submit
         </button>

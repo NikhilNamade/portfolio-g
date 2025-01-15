@@ -29,11 +29,11 @@ const Portfolio2 = () => {
 
   return (
     <div className='body'>
-      <header className='header'>
+      <header className='navbar navbar-expand-lg header'>
         <div className="container">
           <div>
-            <h1 style={{ color: "white", fontSize: "4vmin" }}>{userdata.name ? userdata.name : "Your Name"}</h1>
-            <p style={{ textAlign: "start" }}>{userdata.Domain}</p>
+            <h1 style={{ color: "black", fontSize: "4vmin" }}>{userdata.name ? userdata.name : "Your Name"}</h1>
+            <p style={{ textAlign: "start",color:"black"}}>{userdata.Domain}</p>
           </div>
           <nav>
             <ul className="nav-links">
