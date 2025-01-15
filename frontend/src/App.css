@@ -549,9 +549,6 @@ footer {
 
 /* Responsive Form Section */
 @media (max-width: 1500px) {
-  .navbar{
-    width: 100%;
-  }
   form {
     width: 90%;
     padding: 3vmin;
@@ -587,9 +584,6 @@ footer {
 
 /* Responsive Form Section */
 @media (max-width: 768px) {
-  .navbar{
-    width: 100%;
-  }
   form {
     width: 90%;
     padding: 3vmin;
@@ -621,7 +615,6 @@ footer {
 
 /* Responsive bxos Section */
 @media (max-width: 768px) {
-  
   .bxos {
     flex-direction: column;
     padding: 3vmin;
@@ -725,12 +718,6 @@ footer {
 
 /* Small Screens (Max Width: 480px) */
 @media (max-width: 480px) {
-  body{
-    width: 100%;
-  }
-  .navbar{
-    width: 100%;
-  }
   form h1,
   h1, h2 {
     font-size: 3.5vmin;
