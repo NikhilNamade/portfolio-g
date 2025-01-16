@@ -53,10 +53,8 @@ const Portfolio2 = () => {
             <div>
               <img src={userdata.image ? userdata.image : demo} alt="Your Photo" className="profile-pic" style={{ marginRight: "1vmin" }} />
               <p>
-                I am a passionate software engineer specializing in web development,
-                with expertise in creating dynamic and responsive websites. My focus
-                is on delivering high-quality solutions that solve real-world problems.
-                I have completed my  {userdata.education ? userdata.education : "B.E"} degree
+                {userdata.aboutyou?(userdata.aboutyou):("I am a passionate software engineer specializing in web developmentwith expertise in creating dynamic and responsive websites. My focusis on delivering high-quality solutions that solve real-world problems.")}
+                and I have completed my  {userdata.education ? userdata.education : "B.E"} degree
                 from {userdata.university ? userdata.university : "Mumbai University"} and I
                 have work experience of {userdata.experience ? userdata.experience : "1"} {userdata.experience > 1 ? "Years" : "Year"}
               </p>

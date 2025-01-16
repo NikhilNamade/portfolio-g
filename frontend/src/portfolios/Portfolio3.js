@@ -54,8 +54,11 @@ const Portfolio3 = () => {
           <div id="about" className="section-content">
             <h2>About Me</h2>
             <p>
-              Hello! I'm a creative developer with a passion for designing intuitive user interfaces and crafting scalable backend solutions. I thrive on solving complex problems and turning ideas into impactful digital experiences.
-            </p>
+                Hello! {userdata.aboutyou?(userdata.aboutyou):("I am a passionate software engineer specializing in web developmentwith expertise in creating dynamic and responsive websites. My focusis on delivering high-quality solutions that solve real-world problems.")}
+                and I have completed my  {userdata.education ? userdata.education : "B.E"} degree
+                from {userdata.university ? userdata.university : "Mumbai University"} and I
+                have work experience of {userdata.experience ? userdata.experience : "1"} {userdata.experience > 1 ? "Years" : "Year"}
+              </p>
           </div>
 
           <div id="skills" className="section-content">

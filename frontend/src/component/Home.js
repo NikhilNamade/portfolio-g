@@ -16,6 +16,7 @@ const Home = (props) => {
     experience: "",
     LinkedinURL: "",
     GithubURL: "",
+    aboutyou:""
   });
   //for skills
   const onchangeSkils = (index, e) => {
@@ -67,21 +68,28 @@ const Home = (props) => {
       formData.append("project", JSON.stringify(project));
       formData.append("LinkedinURL", credincials.LinkedinURL);
       formData.append("GithubURL", credincials.GithubURL);
+      formData.append("aboutyou",credincials.aboutyou);
       formData.append("Domain", domain);
       formData.append("image", image);
       formData.append("resume", resume);
-      const response = await fetch(`https://portfolio-generator-backend-kvqx.onrender.com/api/data/adddata`, {
+      const response = await fetch(`http://localhost:5000/api/data/adddata`, {
         method: 'POST',
         headers: {
           "auth-token": localStorage.getItem("token"),
         },
         body: formData, // Use FormData to include the image
       });
+      const data = await response.json();
       setSubmit(true);
-      navigate("/about")
+      if(data.success)
+      {
+        navigate("/about")
+      }else{
+        alert("Unable")
+      }
       { props.setProgress(100) }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error :', error);
     }
   };
 
@@ -229,7 +237,24 @@ const Home = (props) => {
               />
             </div>
           </div>
-
+          <div className="formbox">
+          <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">
+                About You
+              </label>
+              <input
+                type="text"
+                disabled={!localStorage.getItem("token")}
+                className="form-control"
+                id="aboutyou"
+                name="aboutyou"
+                value={credincials.aboutyou}
+                onChange={onchange}
+                style={{ width: "60vmin" }}
+                placeholder="About You"
+              />
+            </div>
+          </div>
           <div className="formbox">
             <div className="mb-3">
               <label htmlFor="exampleInputEmail1" className="form-label">

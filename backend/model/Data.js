@@ -50,6 +50,9 @@ const Dataschems = new Schema({
     type: String,
     required: true,
   },
+  aboutyou: {
+    type: String,
+  },
   date: {
     type: Date,
     required: true,

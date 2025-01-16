@@ -37,7 +37,6 @@ routes.post(
   ],
   async (req, res) => {
     const error = validationResult(req);
-
     if (!error.isEmpty()) {
       return res.status(400).json({ errors: error.array() });
     }
@@ -107,10 +106,11 @@ routes.post(
         LinkedinURL,
         GithubURL,
         Domain,
+        aboutyou,
       } = req.body;
       const parsedProject =
         typeof project === "string" ? JSON.parse(project) : project;
-
+        console.log("About You from req.body:", aboutyou);
       // Create new user data
       const userdata = new Data({
         name,
@@ -125,9 +125,9 @@ routes.post(
         LinkedinURL,
         GithubURL,
         Domain,
+        aboutyou,
         userId: req.user.id,
       });
-
       const savedata = await userdata.save();
       res.json({ success: true, savedata });
     } catch (err) {
