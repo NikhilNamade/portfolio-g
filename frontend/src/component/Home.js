@@ -83,6 +83,7 @@ const Home = (props) => {
         body: formData, // Use FormData to include the image
       });
       const data = await response.json();
+      console.log(data);
       setSubmit(true);
       if (data.success) {
         navigate("/about")
