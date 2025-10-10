@@ -46,6 +46,17 @@ const About = () => {
           <button className="select" onClick={() =>{setShowNavbar(false); navigate(`/portfolio3/${datas.userId}`)}}>Select</button>
           </div>
         </div>
+        <div className="box"  style={{
+            backgroundImage: `url(${Portfolio3})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}>
+        <h1>Portfolio3</h1>
+          <div>
+          <button className="preview" onClick={() => {setShowNavbar(false); navigate("/portfolio4")}}>Preview</button>
+          <button className="select" onClick={() =>{setShowNavbar(false); navigate(`/portfolio4/${datas.userId}`)}}>Select</button>
+          </div>
+        </div>
       </div>
     </>
   );

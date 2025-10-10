@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import Datacontext from "../context/data/Datacontext";
 const Navbar = (props) => {
+    const { fetchdata, userdata ,fetchId,datas} = useContext(Datacontext);
     const location = useLocation();
     const navigate = useNavigate();
     const handleClick = ()=>{
@@ -9,6 +11,14 @@ const Navbar = (props) => {
         navigate("/login");
         {props.setProgress(100)}
         //#344955
+    }
+    useEffect(() => {
+        fetchId()
+      }, [])
+    const handleUpdate = ()=>{
+        console.log(datas.userId);
+        fetchdata(datas.userId);
+        if(!userdata.success) {alert("No Data found")};
     }
     return (
         <>
@@ -30,7 +40,12 @@ const Navbar = (props) => {
                         {!localStorage.getItem("token")?<div style={{backgroundColor:"transparent"}}>
                             <Link className="btn btn-primary mx-2 my-2" to="/login" type="submit">Login</Link>
                             <Link className="btn btn-primary my-2" to="/signup" type="submit">SignUp</Link>
-                        </div>:<button className='btn btn-primary' onClick={handleClick}>Logout</button>}
+                        </div>:
+                        <div style={{backgroundColor:"transparent",width:"22vmin", display:"flex",alignItems:"center",justifyContent:"space-evenly"}}>
+                            <button className='btn btn-primary' onClick={handleClick}>Logout</button>
+                            <button className='btn btn-primary' onClick={handleUpdate}>Update</button>
+                        </div>
+                        }
                     </div>
                 </div>
             </nav>

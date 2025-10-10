@@ -3,26 +3,23 @@ const Data = require("../model/Data");
 const routes = express.Router();
 const fetchUser = require("../middleware/fetchuser");
 const { body, validationResult } = require("express-validator");
+require("dotenv");
+
+const cloudinary = require("cloudinary").v2;
+const multer = require("multer");
+const path = require("path");
 
 
-//aws s3 bucket
-
-const { S3Client } = require("@aws-sdk/client-s3");
-const { Upload } = require("@aws-sdk/lib-storage");
-
-const s3 = new S3Client({
-  region: process.env.REAGION,
-  credentials: {
-    accessKeyId: process.env.ACCESS_KEY_ID,
-    secretAccessKey:process.env.SECERET_ACCESS_KEY,
-  },
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
 });
-const multer = require("multer")
-// Multer setup to handle file uploads
-const storage = multer.memoryStorage(); // Store files in memory for processing
-const upload = multer({ storage });
 
+// Save file locally first
+const storage = multer.memoryStorage(); // keeps files in memory
 
+const upload = multer({ storage}); // max 10MB
 
 
 routes.post(
@@ -50,50 +47,42 @@ routes.post(
         await Data.deleteMany({ userId: req.user.id });
       }
 
-      const uploadFile = async (file, filename) => {
-        let contentType;
-
-        // Determine content type based on file MIME type
-        switch (file.mimetype) {
-          case "image/jpeg":
-          case "image/jpg":
-            contentType = "image/jpeg";
-            break;
-          case "image/png":
-            contentType = "image/png";
-            break;
-          case "image/gif":
-            contentType = "image/gif";
-            break;
-          default:
-            contentType = "application/octet-stream";
+  
+      const uploadToCloudinary = async (file, folder = "railwayconcession") => {
+        // Validate file type
+        if (file.fieldname === "image" && !file.mimetype.startsWith("image/")) {
+            throw new Error("Profile image must be an image file.");
         }
-
-        const uploadParams = {
-          Bucket: process.env.Bucket,
-          Key: filename,
-          Body: file.buffer, // File content from memory
-          ContentType: contentType,
-        };
-
-        const upload = new Upload({
-          client: s3,
-          params: uploadParams,
+        if (file.fieldname === "resume" && file.mimetype !== "application/pdf") {
+            throw new Error("Resume must be a PDF file.");
+        }
+    
+        // Set Cloudinary resource type
+        const resourceType = file.fieldname === "resume" ? "raw" : "image";
+    
+        return new Promise((resolve, reject) => {
+            const stream = cloudinary.uploader.upload_stream(
+                {
+                    folder: folder,
+                    resource_type: resourceType,
+                    use_filename: true,
+                    unique_filename: false,
+                    access_mode: "public",
+                },
+                (error, result) => {
+                    if (error) reject(error);
+                    else resolve(result.secure_url);
+                }
+            );
+            stream.end(file.buffer); // send buffer to Cloudinary
         });
-
-        const response = await upload.done();
-        return response.Location; // S3 URL
-      };
+    };
+    
 
       // Upload image and resume
-      const profileimgUrl = await uploadFile(
-        req.files["image"][0],
-        `image-${Date.now()}-${req.files["image"][0].originalname}`
-      );
-      const resumeUrl = await uploadFile(
-        req.files["resume"][0],
-        `resume-${Date.now()}-${req.files["resume"][0].originalname}`
-      );
+      const profileimgUrl = await uploadToCloudinary(req.files["image"][0]);
+      const resumeUrl = await uploadToCloudinary(req.files["resume"][0]);
+      
 
       const {
         name,
@@ -138,7 +127,7 @@ routes.post(
 );
 
 //fetchuser data /api/data/fetch
-routes.post("/fetch/:userId", async (req, res) => {
+routes.get("/fetch/:userId", async (req, res) => {
   try {
     //console.log("Fetching data for user:", req.user.id); // Add logging
     const user = await Data.findOne({
@@ -149,7 +138,7 @@ routes.post("/fetch/:userId", async (req, res) => {
       return res.status(404).json({ success: false, error: "No data found" });
     }
 
-    res.json(user);
+    res.json({success:true, user});
   } catch (err) {
     console.error("Server error:", err); // Add error logging
     res.status(400).json({ success: false, error: "Server Error" });
@@ -157,7 +146,7 @@ routes.post("/fetch/:userId", async (req, res) => {
 });
 
 //fetch userid from authtoken
-routes.post("/fetchid",fetchUser,(req,res)=>{
+routes.get("/fetchid",fetchUser,(req,res)=>{
   try {
     const userId = req.user.id;
     res.json({userId})

@@ -3,6 +3,7 @@ import emailjs from '@emailjs/browser';
 import { useParams } from 'react-router-dom';
 import Datacontext from "../context/data/Datacontext";
 import demo from "./demo.jpg"
+import "./portfolio2.css";
 const Portfolio2 = () => {
   const form = useRef();
   const { fetchdata, userdata } = useContext(Datacontext);
@@ -28,12 +29,12 @@ const Portfolio2 = () => {
   };
 
   return (
-    <div className='body'>
-      <header className='navbar navbar-expand-lg header'>
+    <div className='portfolio2-container'>
+      <header className='header'>
         <div className="container">
           <div>
-            <h1 style={{ color: "black", fontSize: "4vmin" }}>{userdata.name ? userdata.name : "Your Name"}</h1>
-            <p style={{ textAlign: "start",color:"black"}}>{userdata.Domain}</p>
+            <h1>{userdata.user.name ? userdata.user.name : "Your Name"}</h1>
+            <p>{userdata.user.Domain}</p>
           </div>
           <nav>
             <ul className="nav-links">
@@ -51,12 +52,12 @@ const Portfolio2 = () => {
           <div className="about-content">
             <h2>About Me</h2>
             <div>
-              <img src={userdata.image ? userdata.image : demo} alt="Your Photo" className="profile-pic" style={{ marginRight: "1vmin" }} />
+              <img src={userdata.user.image ? userdata.user.image : demo} alt="Your Photo" className="profile-pic" style={{ marginRight: "1vmin" }} />
               <p>
-                {userdata.aboutyou?(userdata.aboutyou):("I am a passionate software engineer specializing in web developmentwith expertise in creating dynamic and responsive websites. My focusis on delivering high-quality solutions that solve real-world problems.")}
-                and I have completed my  {userdata.education ? userdata.education : "B.E"} degree
-                from {userdata.university ? userdata.university : "Mumbai University"} and I
-                have work experience of {userdata.experience ? userdata.experience : "1"} {userdata.experience > 1 ? "Years" : "Year"}
+                {userdata.user.aboutyou?(userdata.user.aboutyou):("I am a passionate software engineer specializing in web developmentwith expertise in creating dynamic and responsive websites. My focusis on delivering high-quality solutions that solve real-world problems.")}
+                and I have completed my  {userdata.user.education ? userdata.user.education : "B.E"} degree
+                from {userdata.user.university ? userdata.user.university : "Mumbai University"} and I
+                have work experience of {userdata.user.experience ? userdata.user.experience : "1"} {userdata.user.experience > 1 ? "Years" : "Year"}
               </p>
             </div>
           </div>
@@ -67,8 +68,8 @@ const Portfolio2 = () => {
         <div className="container">
           <h2>Skills</h2>
           <div className="skills-grid">
-            {userdata.Skills && userdata.Skills.length > 0 ? (
-              userdata.Skills.map((skill) => <div className='skill'>{skill}</div>)
+            {userdata.user.Skills && userdata.user.Skills.length > 0 ? (
+              userdata.user.Skills.map((skill, index) => <div key={index} className='skill'>{skill}</div>)
             ) : (
               <div className='skill'>
                 Skills Are Required
@@ -83,13 +84,13 @@ const Portfolio2 = () => {
           <h2>Projects</h2>
           <div className="projects-grid">
             {
-              userdata.project && userdata.project.length > 0 ?
+              userdata.user.project && userdata.user.project.length > 0 ?
                 (
-                  userdata.project.map((proj) => (
-                    <div className="project-cards">
+                  userdata.user.project.map((proj, index) => (
+                    <div key={index} className="project-cards">
                       <h3>{proj.title}</h3>
                       <p>{proj.description}</p>
-                      <a href={proj.Projectlink} target="_blank" className="btn">View Project</a>
+                      <a href={proj.Projectlink} target="_blank" rel="noopener noreferrer" className="btn">View Project</a>
                     </div>
                   ))
                 ) :
@@ -109,23 +110,23 @@ const Portfolio2 = () => {
         <div className="container">
           <h2>Contact</h2>
           <form className="contact-form" ref={form} onSubmit={sendEmail}>
-            <input value={userdata.email} name="to_email" style={{ display: "none" }}></input>
-            <input value={userdata.name} name="to_name" style={{ display: "none" }}></input>
+            <input value={userdata.user.email} name="to_email" style={{ display: "none" }}></input>
+            <input value={userdata.user.name} name="to_name" style={{ display: "none" }}></input>
             <input type="text" placeholder="Your Name" name="from_name" required />
             <input type="email" placeholder="Your Email" name="from_email" required />
             <textarea placeholder="Your Message" required name='message'></textarea>
             <button type="submit" className="btn">Send Message</button>
           </form>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-evenly", marginTop: '2vmin' }}>
-            <a href={userdata.LinkedinURL}>Linkindin</a>
-            <a href={userdata.GithubURL}>Github</a>
-            <a href={userdata.resume ? userdata.resume : (demo)} target="_blank" rel="noopener noreferrer">Resume</a>
+          <div className="contact-links">
+            <a href={userdata.user.LinkedinURL}>LinkedIn</a>
+            <a href={userdata.user.GithubURL}>GitHub</a>
+            <a href={userdata.user.resume ? userdata.user.resume : (demo)} target="_blank" rel="noopener noreferrer">Resume</a>
           </div>
         </div>
       </section>
 
       <footer>
-        <p>&copy; 2024 {userdata.name}. Designed with ❤️</p>
+        <p>&copy; 2024 {userdata.user.name}. Designed with ❤️</p>
       </footer>
     </div>
   )

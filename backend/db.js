@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
-
-const mongooseURI = process.env.DB_URL;
-
+const mongooseURI = "mongodb+srv://nikhil_namade:nikhilnamade1934@portfolio-g.ln3ab.mongodb.net/";
+require("dotenv").config();
 const coonectTomongo = async () => {
-  await mongoose.connect(mongooseURI);
+  await mongoose.connect(process.env.DB_URL);
   console.log("connect to mongo");
 };
 module.exports = coonectTomongo;
